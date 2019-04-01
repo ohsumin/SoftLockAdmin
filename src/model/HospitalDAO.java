@@ -164,13 +164,22 @@ public class HospitalDAO {
 	
 	// 가입허가
 	public void updatePerm(String hp_id) {
+		Connection con2 = null;
+		PreparedStatement psmt2;
+		ResultSet rs2;
 		String query = "UPDATE hospital SET "
-				+ " hp_perm='y' "
+				+ " hp_perm='y'"
+				+ " WHERE hp_id=?";
+		String query2 = "UPDATE hospital SET "
+				+ " authority='ROLE_ADMIN'"
 				+ " WHERE hp_id=?";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, hp_id);
 			psmt.executeQuery();
+			psmt2 = con2.prepareStatement(query2);
+			psmt2.setString(1, hp_id);
+			psmt2.executeQuery();
 			System.out.println("updatePerm() query : " + query);
 		}
 		catch(Exception e) {

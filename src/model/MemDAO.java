@@ -379,7 +379,10 @@ public class MemDAO {
 	//월별 예약 숫자 카운드하기
 	public ArrayList<ReservationDTO> monthData() { 
 		ArrayList<ReservationDTO> rDTO = new ArrayList<ReservationDTO>();
-		String query = " select count(*) from reservation where resv_date like '20%' group by resv_date order by resv_date asc ";
+		//String query = " select count(*) from reservation where resv_date like '20%' group by resv_date order by resv_date asc ";
+		String query = " select (select count(*) from reservation where resv_date like '2018/10/%'),(select count(*) from reservation where resv_date like '2018/11/%'),(select count(*) from reservation where resv_date like '2018/12/%'),(select count(*) from reservation where resv_date like '2019/01/%'),(select count(*) from reservation where resv_date like '2019/02/%'),(select count(*) from reservation where resv_date like '2019/03/%') " 
+				+ " from reservation " 
+				+ " where resv_date like '201%' ";
 		try {
 			psmt = con.prepareStatement(query);
 			rs = psmt.executeQuery();
@@ -387,10 +390,15 @@ public class MemDAO {
 			while(rs.next()) {
 				// 결과셋중 하나를 DTO객체에 저장함
 				ReservationDTO dto = new ReservationDTO();
+					
 				
 				// DTO객체의 setter()을 이용하여 데이터저장
-				dto.setResv_date(rs.getString(1));
-				
+				dto.setResv_idx(rs.getInt(1));
+				dto.setResv_hp_idx(rs.getInt(2));
+				dto.setResv_mem_idx(rs.getInt(3));
+				dto.setResv_symp(rs.getString(4));
+				dto.setResv_req(rs.getString(5));
+				dto.setResv_date(rs.getString(6));
 				// 위에서 저장한 DTO객체를 List컬렉션에 추가
 				rDTO.add(dto);
 			}

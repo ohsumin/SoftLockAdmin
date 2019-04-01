@@ -45,7 +45,7 @@ if ($('#verview-shart').length) {
         },
         "plot": { "aspect": "spline" },
         "series": [{
-                "values": [<%=monthData.get(0).getResv_date()%>,<%=monthData.get(1).getResv_date()%>,<%=monthData.get(2).getResv_date()%>,<%=monthData.get(3).getResv_date()%>,<%=monthData.get(4).getResv_date()%>,<%=monthData.get(5).getResv_date()%>],
+                "values": [<%=monthData.get(0).getResv_idx()%>,<%=monthData.get(0).getResv_hp_idx()%>,<%=monthData.get(0).getResv_mem_idx()%>,<%=monthData.get(0).getResv_symp()%>,<%=monthData.get(0).getResv_req()%>,<%=monthData.get(0).getResv_date()%>],
                 "line-color": "#F0B41A",
                 /* "dotted" | "dashed" */
                 "line-width": 5 /* in pixels */ ,
