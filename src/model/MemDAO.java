@@ -297,7 +297,7 @@ public class MemDAO {
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, mem_id);
-			
+			System.out.println("mem_idmem_idmem_idmem_idmem_idmem_idmem_idmem_id="+mem_id);
 			//수정된 행의 갯수가 반환됨
 			affected = psmt.executeUpdate();
 		}

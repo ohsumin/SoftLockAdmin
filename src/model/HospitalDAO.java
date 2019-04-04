@@ -167,19 +167,29 @@ public class HospitalDAO {
 		Connection con2 = null;
 		PreparedStatement psmt2;
 		ResultSet rs2;
+		
+		Connection con3 = null;
+		PreparedStatement psmt3;
+		ResultSet rs3;
 		String query = "UPDATE hospital SET "
-				+ " hp_perm='y'"
-				+ " WHERE hp_id=?";
+				+ " hp_perm='y' "
+				+ " WHERE hp_id=? ";
 		String query2 = "UPDATE hospital SET "
-				+ " authority='ROLE_ADMIN'"
-				+ " WHERE hp_id=?";
+				+ " authority='ROLE_ADMIN' "
+				+ " WHERE hp_id=? ";
+		String query3 = "UPDATE hospital SET "
+				+ " enabled='1' "
+				+ " WHERE hp_id=? ";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, hp_id);
 			psmt.executeQuery();
-			psmt2 = con2.prepareStatement(query2);
-			psmt2.setString(1, hp_id);
-			psmt2.executeQuery();
+			psmt = con.prepareStatement(query2);
+			psmt.setString(1, hp_id);
+			psmt.executeQuery();
+			psmt = con.prepareStatement(query3);
+			psmt.setString(1, hp_id);
+			psmt.executeQuery();
 			System.out.println("updatePerm() query : " + query);
 		}
 		catch(Exception e) {
